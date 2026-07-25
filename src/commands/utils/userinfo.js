@@ -13,7 +13,7 @@ module.exports = {
         ),
 
     async execute(interaction) {
-        const userTarget = interaction.options.getUser('target');
+        const userTarget = interaction.options.getUser('target') || interaction.user;
 
         const embed = new EmbedBuilder()
             .setTitle('**USER INFORMATION**')
@@ -24,7 +24,7 @@ module.exports = {
                 { name: 'Account ID:', value: `${userTarget.id}` }
             )
             .setImage(userTarget.displayAvatarURL({ dynamic: true, size: 1024 }))
-            .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL({}) })
+            .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() })
             .setTimestamp();
 
         return interaction.reply({ embeds: [embed] });
