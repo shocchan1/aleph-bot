@@ -19,7 +19,7 @@ const rest = new REST().setToken(process.env.TOKENLOGIN);
         }
 
         await rest.put(
-            Routes.applicationCommands(process.env.BOTID),
+            Routes.applicationGuildCommands(process.env.BOTID, process.env.GUILDID),
             { body }
         );
         
