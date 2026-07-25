@@ -1,6 +1,5 @@
 // @ts-check
 const { SlashCommandBuilder, EmbedBuilder, version } = require('discord.js');
-const client = require('../../client');
 
 module.exports = {
     name: 'botinfo',
@@ -9,7 +8,7 @@ module.exports = {
         .setDescription('Get information of this bot'),
 
     async execute(interaction) {
-        const bot = await interaction.client;
+        const bot = interaction.client;
         const user = interaction.user || interaction.member;
 
         const embed = new EmbedBuilder()
@@ -18,7 +17,7 @@ module.exports = {
             .setDescription(`This bot used Discord.js v${version} & ${process.version}`)
             .setFields(
                 { name: 'Name:', value: bot.user.displayName.toString() || bot.user.globalName.toString() },
-                { name: 'Ping:', value: `${client.ws.ping}ms` },
+                { name: 'Ping:', value: `${bot.ws.ping}ms` },
                 { name: 'Uptime:', value: botUptime(bot.uptime) }
             )
             .setFooter({ text: `Requested by ${user.tag}`, iconURL: user.displayAvatarURL() })
