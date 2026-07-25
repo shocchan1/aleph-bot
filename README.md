@@ -35,15 +35,21 @@ node src/index.js
 Create a **.env** file in the project root and configure the following variables:
 
 TOKENLOGIN=your_bot_token
+
 BOTID=your_application_id
 
 ## Project Structure
 
 src/
+
 commands/utils/
+
 events/
+
 handlers/
+
 client.js
+
 index.js
 
 ## Roadmap
