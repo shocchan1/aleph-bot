@@ -17,7 +17,7 @@ module.exports = {
             .setFields(
                 { name: 'Name:', value: `${guild.name} (${guild.id})` },
                 { name: 'Owner:', value: `<@${guild.ownerId}>` },
-                { name: 'Members:', value: guild.membersCount.toString() },
+                { name: 'Members:', value: guild.memberCount.toString() },
                 { name: 'Created At:', value: `<t:${Math.floor(guild.createdTimestamp / 1000)}:F>` }
             )
             .setFooter({ text: `Requested by ${user.tag}`, iconURL: user.displayAvatarURL() })
