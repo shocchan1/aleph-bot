@@ -22,3 +22,24 @@
 ### Fixed
 
 - Added optional target to /userinfo command
+
+## v0.3.0
+
+### Added
+
+- Added `/userinfo` command
+- Added `/serverinfo` command
+- Added `/botinfo` command
+- Added rich embed responses
+- Added server and bot information
+- Added optional target support for `/userinfo`
+
+### Changed
+
+- Improved embed consistency across commands
+- Enhanced command response formatting
+
+### Fixed
+
+- Fixed undefined banner by fetching user before access
+- Fixed member count formatting
