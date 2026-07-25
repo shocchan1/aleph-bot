@@ -9,18 +9,23 @@ module.exports = {
         if (interaction.isButton()) {
             switch (interaction.customId) {
                 case 'refresh_ping':
-                    await interaction.editReply({ content: `${interaction.client.ws.ping}ms`, flags: MessageFlags.Ephemeral });
+                    await interaction.update({ content: `${interaction.client.ws.ping}ms`, });
                     break;
 
                 case 'ping':
-                    await interaction.editReply({ content: 'Pong!', flags: MessageFlags.Ephemeral });
+                    await interaction.update({ content: 'Pong!' });
                     break;
 
                 case 'delete_ping':
                     await interaction.message.delete();
                     break;
+
+                default:
+                    console.warn(`[INTERACTION] Unknown Button: ${interaction.customId}`);
             }
+            return;
         }
+
         if (!interaction.isChatInputCommand()) return;
 
         const command = client.commands.get(interaction.commandName);
@@ -28,7 +33,7 @@ module.exports = {
 
         try {
             await command.execute(interaction);
-            console.log(`[INTERACTION] ${interaction.commandName} executed by ${interaction.user.displayName || interaction.user.tag}`)
+            console.log(`[INTERACTION] ${interaction.commandName} executed by ${interaction.member.displayName || interaction.user.username}`)
         } catch (error) {
             console.log(`[INTERACTION] Failed to execute modules.`);
             console.error(error);
