@@ -9,10 +9,11 @@ module.exports = {
         if (!interaction.isChatInputCommand()) return;
 
         const command = client.commands.get(interaction.commandName);
-        if (!command) return console.warn(`No command found for ${interaction.commandName}.`);
+        if (!command) return console.warn(`[INTERACTION] No command found for ${interaction.commandName}.`);
 
         try {
             await command.execute(interaction);
+            console.log(`[INTERACTION] ${interaction.commandName} executed by ${interaction.user.displayName || interaction.user.tag}`)
         } catch (error) {
             console.log(`[INTERACTION] Failed to execute modules.`);
             console.error(error);
