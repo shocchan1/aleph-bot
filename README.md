@@ -40,17 +40,11 @@ BOTID=your_application_id
 ## Project Structure
 
 src/
-├── commands/
-    └── utils/
-├── events/
-    ├── interactionCreate.js
-    └── ready.js
-├── handlers/
-    ├── cmdHandler.js
-    ├── depcom.js
-    └── eventHandler.js
-├── client.js
-└── index.js
+commands/utils/
+events/
+handlers/
+client.js
+index.js
 
 ## Roadmap
 
