@@ -8,7 +8,7 @@ module.exports = {
     async execute(interaction) {
         if(interaction.isModalSubmit()) {
             const modal = client.modals.get(interaction.customId);
-            if (!button) return console.warn(`[INTERACTION] No modal found for ${interaction.customId}`);
+            if (!modal) return console.warn(`[INTERACTION] No modal found for ${interaction.customId}`);
 
             try {
                 await modal.execute(interaction);
