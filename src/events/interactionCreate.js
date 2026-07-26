@@ -7,23 +7,16 @@ module.exports = {
 
     async execute(interaction) {
         if (interaction.isButton()) {
-            switch (interaction.customId) {
-                case 'refresh_ping':
-                    await interaction.update({ content: `${interaction.client.ws.ping}ms`, });
-                    break;
+            const button = client.buttons.get(interaction.customId);
+            if (!button) return console.warn(`[INTERACTION] No button found for ${interaction.customId}.`);
 
-                case 'ping':
-                    await interaction.update({ content: 'Pong!' });
-                    break;
-
-                case 'delete_ping':
-                    await interaction.message.delete();
-                    break;
-
-                default:
-                    console.warn(`[INTERACTION] Unknown Button: ${interaction.customId}`);
+            try {
+                await button.execute(interaction);
+                console.log(`[INTERACTION] ${interaction.customId} button executed by ${interaction.member.displayName || interaction.user.username}.`);
+            } catch (error) {
+                console.warn('[INTERACTION] Failed to execute components.');
+                console.error(error);
             }
-            return;
         }
 
         if (!interaction.isChatInputCommand()) return;
@@ -35,7 +28,7 @@ module.exports = {
             await command.execute(interaction);
             console.log(`[INTERACTION] ${interaction.commandName} executed by ${interaction.member.displayName || interaction.user.username}`)
         } catch (error) {
-            console.log(`[INTERACTION] Failed to execute modules.`);
+            console.warn(`[INTERACTION] Failed to execute modules.`);
             console.error(error);
         }
     }
