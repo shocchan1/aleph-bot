@@ -26,7 +26,7 @@ module.exports = {
             .setStyle(ButtonStyle.Primary);
         
         const button1 = new ButtonBuilder()
-            .setCustomId('ping')
+            .setCustomId('pingb')
             .setLabel('PING')
             .setStyle(ButtonStyle.Secondary);
 
