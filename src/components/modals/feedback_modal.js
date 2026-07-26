@@ -8,7 +8,7 @@ module.exports = {
 
         await interaction.channel.send({ content: `# **RECEIVED FEEDBACK**\n\nHey, hey, Master! Someone has sent feedback for us. Let's take a look, shall we?\n\nTitle:\n${title}\n\nDescription:\n${desc}` });
 
-        await interacion.deferReply();
+        await interaction.deferReply();
 
         return interaction.followUp({ content: 'Thank you for the feedback!', components: [] });
     }
