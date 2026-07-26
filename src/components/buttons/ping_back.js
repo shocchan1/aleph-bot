@@ -1,4 +1,5 @@
 const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+const { botUptime } = require('../../utils/botUptimeFormat');
 
 // @ts-check
 module.exports = {
