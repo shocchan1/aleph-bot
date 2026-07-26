@@ -6,7 +6,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const client = require('../client.js');
 const { Collection } = require('discord.js');
 
 function loadCommands(commandsPath) {
