@@ -6,6 +6,19 @@ module.exports = {
     once: false,
 
     async execute(interaction) {
+        if(interaction.isModalSubmit()) {
+            const modal = client.modals.get(interaction.customId);
+            if (!button) return console.warn(`[INTERACTION] No modal found for ${interaction.customId}`);
+
+            try {
+                await modal.execute(interaction);
+                console.log(`[INTERACTION] ${interaction.member.displayName || interaction.user.tag} given ${interaction.customId} modal submit.`);
+            } catch (error) {
+                console.warn('[INTERACTION] Failed to execute modal components.');
+                console.error(error);
+            }
+        }
+        
         if (interaction.isButton()) {
             const button = client.buttons.get(interaction.customId);
             if (!button) return console.warn(`[INTERACTION] No button found for ${interaction.customId}.`);
@@ -14,7 +27,7 @@ module.exports = {
                 await button.execute(interaction);
                 console.log(`[INTERACTION] ${interaction.customId} button executed by ${interaction.member.displayName || interaction.user.username}.`);
             } catch (error) {
-                console.warn('[INTERACTION] Failed to execute components.');
+                console.warn('[INTERACTION] Failed to execute button components.');
                 console.error(error);
             }
         }
