@@ -7,7 +7,7 @@ module.exports = {
 
     async execute(interaction) {
         const bot = interaction.client;
-        const user = interaction.member || interaction.user;
+        const user = interaction.user || interaction.member;
 
         const embed = new EmbedBuilder()
             .setDescription('# **THANK YOU FOR CHECKING ME**\n\nI\'m good so don\'t worry about it.')
@@ -15,7 +15,7 @@ module.exports = {
             .setFields(
                 { name: 'Ping:', value: `${bot.ws.ping}ms` }
             )
-            .setFooter({ text: `Requested by ${user.username || user.tag}`, iconURL: user.displayAvatarURL() })
+            .setFooter({ text: `Requested by ${user.tag}`, iconURL: user.displayAvatarURL() })
             .setTimestamp();
 
         const button = new ButtonBuilder()

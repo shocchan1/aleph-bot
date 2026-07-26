@@ -6,12 +6,12 @@ module.exports = {
 
     async execute(interaction) {
         const bot = interaction.client;
-        const user = interaction.member || interaction.user;
+        const user = interaction.user || interaction.member;
 
         const embed = new EmbedBuilder()
             .setDescription('# **PONG!~**')
             .setColor('DarkOrange')
-            .setFooter({ text: `Requested by ${user.username || user.tag}`, iconURL: user.displayAvatarURL() })
+            .setFooter({ text: `Requested by ${user.tag}`, iconURL: user.displayAvatarURL() })
             .setTimestamp();
 
         const button = new ButtonBuilder()
