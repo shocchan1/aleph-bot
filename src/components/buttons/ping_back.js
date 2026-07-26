@@ -33,6 +33,6 @@ module.exports = {
 
         const row = new ActionRowBuilder().addComponents(button, button1, button2);
 
-        await interaction.reply({ content: 'Pong!~', embeds: [embed], components: [row] });
+        await interaction.update({ content: 'Pong!~', embeds: [embed], components: [row] });
     }
 }
