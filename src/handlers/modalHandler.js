@@ -27,4 +27,6 @@ function modalLoader(modalPath) {
             console.error(error);
         }
     }
+
+    return modals;
 }
