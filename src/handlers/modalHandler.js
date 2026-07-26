@@ -30,3 +30,5 @@ function modalLoader(modalPath) {
 
     return modals;
 }
+
+module.exports = { modalLoader };
