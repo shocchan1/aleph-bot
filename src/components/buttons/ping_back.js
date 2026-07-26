@@ -1,16 +1,12 @@
-// @ts-check
-const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
-const { botUptime } = require('../../utils/botUptimeFormat')
+const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 
+// @ts-check
 module.exports = {
-    name: 'ping',
-    data: new SlashCommandBuilder()
-        .setName('ping')
-        .setDescription('Reply with pong!'),
+    customId: 'back_ping',
 
     async execute(interaction) {
         const bot = interaction.client;
-        const user = interaction.user || interaction.member;
+        const user = interaction.user;
 
         const embed = new EmbedBuilder()
             .setColor('DarkOrange')
@@ -36,6 +32,6 @@ module.exports = {
 
         const row = new ActionRowBuilder().addComponents(button, button1, button2);
 
-        return interaction.reply({ content: 'Pong!~', embeds: [embed], components: [row] });
+        await interaction.reply({ content: 'Pong!~', embeds: [embed], components: [row] });
     }
 }
