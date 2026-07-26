@@ -26,7 +26,6 @@ function loadCommands(commandsPath) {
 
         try {
             const absolutePath = path.resolve(paths);
-            console.log(absolutePath);
             const command = require(absolutePath);
 
             if ('data' in command && 'execute' in command) {
