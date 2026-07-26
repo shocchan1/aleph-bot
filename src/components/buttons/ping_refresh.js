@@ -13,7 +13,7 @@ module.exports = {
             .setDescription('# **THANK YOU FOR CHECKING ME**\n\nI\'m good so don\'t worry about it.')
             .setColor('DarkOrange')
             .setFields(
-                { name: 'Ping:', value: botUptime(bot.ws.ping) }
+                { name: 'Ping:', value: `${bot.ws.ping}ms` }
             )
             .setFooter({ text: `Requested by ${user.username || user.tag}`, iconURL: user.displayAvatarURL() })
             .setTimestamp();
