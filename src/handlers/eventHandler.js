@@ -25,7 +25,7 @@ function eventsLoader(eventsPath, client) {
                 console.warn('[EVENT HANDLER] Invalid event module.\nMissing "name" or "execute".');
             }
         } catch (error) {
-            console.log('[EVENT HANDlER] Failed to load events.')
+            console.warn('[EVENT HANDlER] Failed to load events.')
             console.error(error);
         }
 

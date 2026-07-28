@@ -23,7 +23,7 @@ function buttonLoader(buttonPath) {
                 console.warn('[BUTTON HANDLER] Some files doesn\'t have "customId" or "execute" property.');
             }
         } catch (error) {
-            console.log('[BUTTON HANDLER] Failed to load buttons.');
+            console.warn('[BUTTON HANDLER] Failed to load buttons.');
             console.error(error);
         }
     }

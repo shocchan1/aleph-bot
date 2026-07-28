@@ -25,7 +25,7 @@ const rest = new REST().setToken(process.env.TOKENLOGIN);
         
         console.log(`[DEPLOY] Successfully registering ${commands.size} slash commands.`);
     } catch (error) {
-        console.log('[DEPLOY] Failed to register slash commands.');
+        console.warn('[DEPLOY] Failed to register slash commands.');
         console.error(error);
     }
 })();
