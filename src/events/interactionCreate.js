@@ -17,6 +17,8 @@ module.exports = {
                 console.warn('[INTERACTION] Failed to execute menu components.');
                 console.error(error);
             }
+
+            return;
         }
 
         if(interaction.isModalSubmit()) {
@@ -30,6 +32,8 @@ module.exports = {
                 console.warn('[INTERACTION] Failed to execute modal components.');
                 console.error(error);
             }
+
+            return;
         }
         
         if (interaction.isButton()) {
@@ -43,19 +47,23 @@ module.exports = {
                 console.warn('[INTERACTION] Failed to execute button components.');
                 console.error(error);
             }
+
+            return;
         }
 
-        if (!interaction.isChatInputCommand()) return;
+        if (interaction.isChatInputCommand()) {
+            const command = client.commands.get(interaction.commandName);
+            if (!command) return console.warn(`[INTERACTION] No command found for ${interaction.commandName}.`);
 
-        const command = client.commands.get(interaction.commandName);
-        if (!command) return console.warn(`[INTERACTION] No command found for ${interaction.commandName}.`);
+            try {
+                await command.execute(interaction);
+                console.log(`[INTERACTION] ${interaction.commandName} executed by ${interaction.member.displayName || interaction.user.username}`)
+            } catch (error) {
+                console.warn(`[INTERACTION] Failed to execute modules.`);
+                console.error(error);
+            }
 
-        try {
-            await command.execute(interaction);
-            console.log(`[INTERACTION] ${interaction.commandName} executed by ${interaction.member.displayName || interaction.user.username}`)
-        } catch (error) {
-            console.warn(`[INTERACTION] Failed to execute modules.`);
-            console.error(error);
+            return;
         }
     }
 }
