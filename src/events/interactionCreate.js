@@ -6,6 +6,19 @@ module.exports = {
     once: false,
 
     async execute(interaction) {
+        if (interaction.isStringSelectMenu()) {
+            const menu = client.menus.get(interaction.customId);
+            if (!menu) return console.warn(`[INTERACTION] No menu found for ${interaction.customId}`);
+
+            try {
+                await menu.execute(interaction);
+                console.log(`[INTERACTION] ${interaction.member.displayName || interaction.user.tag} given ${interaction.customId} menu string select.`);
+            } catch (error) {
+                console.warn('[INTERACTION] Failed to execute menu components.');
+                console.error(error);
+            }
+        }
+
         if(interaction.isModalSubmit()) {
             const modal = client.modals.get(interaction.customId);
             if (!modal) return console.warn(`[INTERACTION] No modal found for ${interaction.customId}`);
