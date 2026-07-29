@@ -6,18 +6,7 @@ module.exports = {
     once: false,
 
     async execute(interaction) {
-        if (interaction.isUserSelectMenu()) {
-            const userMenu = client.userMenus.get(interaction.customId);
-            if (!userMenu) return console.warn(`[INTERACTION] No user menu found for ${interaction.customId}`);
-
-            try {
-                await userMenu.execute(interaction);
-                console.log(`[INTERACTION] ${interaction.member.displayName || interaction.user.tag} given ${interaction.customId} menu.`);
-            } catch (error) {
-                console.warn('[INTERACTION] Failed to execute user menu components.');
-            }
-        }
-        if (interaction.isStringSelectMenu()) {
+        if (interaction.isStringSelectMenu() || interaction.isUserSelectMenu()) {
             const menu = client.menus.get(interaction.customId);
             if (!menu) return console.warn(`[INTERACTION] No menu found for ${interaction.customId}`);
 
