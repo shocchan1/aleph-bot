@@ -3,7 +3,7 @@ const { Collection } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 
-function menuStringLoader(menuPath) {
+function menuLoader(menuPath) {
     const menuStrings = new Collection();
     const files = fs.readdirSync(menuPath, { withFileTypes: true });
 
@@ -30,4 +30,4 @@ function menuStringLoader(menuPath) {
     return menuStrings;
 }
 
-module.exports = { menuStringLoader };
+module.exports = { menuLoader };
