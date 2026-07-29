@@ -17,6 +17,6 @@ module.exports = {
 
         const row = new ActionRowBuilder().addComponents(userMenu);
 
-        return interaction.reply({ content: 'Select a member to get their profile information.', components: [userMenu] });
+        return interaction.reply({ content: 'Select a member to get their profile information.', components: [row] });
     }
 }

@@ -6,7 +6,18 @@ module.exports = {
     once: false,
 
     async execute(interaction) {
-        if (interaction.isStringSelectMenu() || interaction.isUserSelectMenu()) {
+        if (interaction.isUserSelectMenu()) {
+            const userMenu = client.userMenus.get(interaction.customId);
+            if (!userMenu) return console.warn(`[INTERACTION] No user menu found for ${interaction.customId}`);
+
+            try {
+                await userMenu.execute(interaction);
+                console.log(`[INTERACTION] ${interaction.member.displayName || interaction.user.tag} given ${interaction.customId} menu.`);
+            } catch (error) {
+                console.warn('[INTERACTION] Failed to execute user menu components.');
+            }
+        }
+        if (interaction.isStringSelectMenu()) {
             const menu = client.menus.get(interaction.customId);
             if (!menu) return console.warn(`[INTERACTION] No menu found for ${interaction.customId}`);
 
@@ -51,19 +62,17 @@ module.exports = {
             return;
         }
 
-        if (interaction.isChatInputCommand()) {
-            const command = client.commands.get(interaction.commandName);
-            if (!command) return console.warn(`[INTERACTION] No command found for ${interaction.commandName}.`);
+        if (!interaction.isChatInputCommand()) return; 
+        
+        const command = client.commands.get(interaction.commandName);
+        if (!command) return console.warn(`[INTERACTION] No command found for ${interaction.commandName}.`);
 
-            try {
-                await command.execute(interaction);
-                console.log(`[INTERACTION] ${interaction.commandName} executed by ${interaction.member.displayName || interaction.user.username}`)
-            } catch (error) {
-                console.warn(`[INTERACTION] Failed to execute modules.`);
-                console.error(error);
-            }
-
-            return;
+        try {
+            await command.execute(interaction);
+            console.log(`[INTERACTION] ${interaction.commandName} executed by ${interaction.member.displayName || interaction.user.username}`)
+        } catch (error) {
+            console.warn(`[INTERACTION] Failed to execute modules.`);
+            console.error(error);
         }
     }
 }
