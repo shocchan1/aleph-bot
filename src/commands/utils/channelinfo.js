@@ -4,7 +4,7 @@ const { SlashCommandBuilder, ActionRowBuilder, ChannelSelectMenuBuilder } = requ
 module.exports = {
     name: 'channelinfo',
     data: new SlashCommandBuilder()
-        .setName('channeinfo')
+        .setName('channelinfo')
         .setDescription('Get channel information'),
 
     async execute(interaction) {
