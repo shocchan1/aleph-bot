@@ -6,7 +6,7 @@ module.exports = {
     once: false,
 
     async execute(interaction) {
-        if (interaction.isStringSelectMenu() || interaction.isUserSelectMenu() || interaction.isRoleSelectMenu() || interaction.isChanelSelectMenu()) {
+        if (interaction.isStringSelectMenu() || interaction.isUserSelectMenu() || interaction.isRoleSelectMenu() || interaction.isChannelSelectMenu()) {
             const menu = client.menus.get(interaction.customId);
             if (!menu) return console.warn(`[INTERACTION] No menu found for ${interaction.customId}`);
 
