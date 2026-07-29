@@ -17,6 +17,6 @@ module.exports = {
 
         const row = new ActionRowBuilder().addComponents(rolememberMenu);
 
-        return interaction.reply({ content: 'Select a role or member below to get their information.', componentns: [row] });
+        return interaction.reply({ content: 'Select a role or member below to get their information.', components: [row] });
     }
 }

@@ -1,6 +1,6 @@
 // @ts-check
 module.exports = {
-    customId: 'roleormemberinfo_menu',
+    customId: 'rolememberinfo_menu',
     
     async execute(interaction) {
         await interaction.deferUpdate();
