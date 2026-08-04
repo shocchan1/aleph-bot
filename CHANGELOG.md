@@ -100,3 +100,93 @@
 This release establishes the core Discord Components architecture for AlephBot.
 
 With this version, the project now supports interactive workflows through Buttons, Modals, and Select Menus, providing a scalable foundation for future moderation features, dashboards, ticket systems, verification systems, and other advanced interactions.
+
+Menurutku, **v0.5.0** adalah salah satu milestone terbesar AlephBot sejauh ini. Pada versi ini kamu tidak hanya menambahkan fitur, tetapi juga membangun **fondasi backend** yang akan dipakai semua fitur selanjutnya.
+
+Aku akan membuat changelog dengan gaya yang profesional namun tetap mudah dibaca.
+
+---
+
+# AlephBot v0.5.0 — Database Foundation
+
+## ✨ Added
+
+### Database
+
+* Added MongoDB Atlas integration.
+* Added centralized database connection manager.
+* Environment variable support for database credentials.
+
+### Models
+
+* Added `Guild` model using Mongoose.
+* Implemented automatic timestamps (`createdAt` & `updatedAt`).
+* Added default guild configuration values.
+* Enforced unique Guild ID to prevent duplicate server records.
+
+### Repository Layer
+
+* Added `GuildRepository`.
+* Implemented database abstraction layer.
+* Added helper methods:
+
+  * `findByGuildId()`
+  * `createGuild()`
+  * `updateGuild()`
+  * `deleteGuild()`
+  * `getOrCreateGuild()`
+
+### Service Layer
+
+* Added `GuildService`.
+* Implemented business logic for guild configuration.
+* Added language validation before database updates.
+* Prevented unnecessary database writes when configuration remains unchanged.
+
+### Commands
+
+* Refactored `/set-language` to use the new Service → Repository architecture.
+* Added dynamic language choices from a centralized constants file.
+* Improved command error handling using `try...catch`.
+
+---
+
+## 🔄 Changed
+
+* Introduced layered architecture:
+
+```text
+Discord Interaction
+        ↓
+     Command
+        ↓
+     Service
+        ↓
+    Repository
+        ↓
+       Model
+        ↓
+     MongoDB
+```
+
+* Commands no longer access database models directly.
+* Business logic moved from commands into the Service layer.
+* Database operations centralized inside repositories.
+* Improved maintainability and scalability of the project structure.
+
+---
+
+## ⚡ Performance
+
+* Reduced unnecessary database queries by introducing `getOrCreateGuild()`.
+* Prevented redundant updates when the selected language is already active.
+* Eliminated duplicated database logic across commands.
+
+---
+
+## 🛠 Developer Experience
+
+* Improved separation of concerns throughout the project.
+* Established a reusable backend pattern for future features.
+* Simplified development of future guild configuration commands.
+* Created a scalable foundation for moderation, logging, temporary voice, localization, and dashboard integration.
